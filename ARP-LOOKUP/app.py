@@ -1,4 +1,7 @@
 import click
+import ip_addr
+import mac_addr
+
 
 @click.group()
 def cli():
@@ -6,16 +9,25 @@ def cli():
 
 @cli.command()
 def fn():
-    click.echo('Jane')
+    name = ip_addr.GetHostName()
+    click.echo(name)
+
 
 
 @cli.command()
 def fm():
-    click.echo('12:45:89:op:98')
+    mac = mac_addr.get_mac_address()
+    click.echo(mac)
 
-cli.add_command(fn)
-cli.add_command(fm)
+# cli.add_command(fn)
+# cli.add_command(fm)
 
+# @click.command()
+# @click.option("--all", default="No IP or MAC found", help="show you both name and mac address")
+
+# def findall(all):
+#     click.echo(fm)
+#     click.echo(fn)
 
 # @click.command()
 # @click.option("--count", default=1, help="Number of greetings")
@@ -27,3 +39,4 @@ cli.add_command(fm)
 
 if __name__ == '__main__':
     cli()
+    # findall()
